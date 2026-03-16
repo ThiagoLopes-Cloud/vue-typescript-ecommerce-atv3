@@ -1,28 +1,30 @@
 <script lang="ts">
 
-// Importa funções necessárias do Vue
+// Importa função principal do Vue
 import { defineComponent } from "vue"
+
+// Importa apenas o tipo PropType
 import type { PropType } from "vue"
 
 // Importa o modelo Product
 import { Product } from "../models/Product"
 
-// defineComponent cria um componente Vue
+// Criação do componente
 export default defineComponent({
 
-  // Nome do componente (boa prática)
+  // Nome do componente
   name: "ProductCard",
 
-  // props são dados recebidos do componente pai
+  // Props recebidas do componente pai
   props: {
 
-    // prop chamada product
+    // Produto que será exibido
     product: {
 
-      // definimos que o tipo é Product
+      // Define que o tipo da prop é Product
       type: Object as PropType<Product>,
 
-      // required significa que é obrigatório
+      // Define que a prop é obrigatória
       required: true
 
     }
@@ -30,7 +32,20 @@ export default defineComponent({
   },
 
   // Eventos que o componente pode emitir
-  emits: ["add-to-cart"]
+  emits: ["add-to-cart"],
+
+  // Methods do componente
+  methods: {
+
+    // Método chamado ao clicar no botão
+    handleAddToCart() {
+
+      // Emite evento para o componente pai
+      this.$emit("add-to-cart", this.product)
+
+    }
+
+  }
 
 })
 
@@ -39,22 +54,17 @@ export default defineComponent({
 
 <template>
 
-  <!-- Container visual do produto -->
+  <!-- Container do card do produto -->
   <div class="product-card">
 
-    <!-- Mostra o nome do produto -->
+    <!-- Nome do produto -->
     <h3>{{ product.name }}</h3>
 
-    <!-- Mostra o preço do produto -->
+    <!-- Preço do produto -->
     <p>Preço: R$ {{ product.price }}</p>
 
-    <!-- Botão para adicionar ao carrinho -->
-    <button
-
-      <!-- Quando clicado dispara um evento -->
-      @click="$emit('add-to-cart', product)"
-
-    >
+    <!-- Botão que adiciona o produto ao carrinho -->
+    <button @click="handleAddToCart">
 
       Adicionar ao carrinho
 
