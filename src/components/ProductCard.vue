@@ -1,7 +1,8 @@
 <script lang="ts">
 
 // Importa funções necessárias do Vue
-import { defineComponent, PropType } from "vue"
+import { defineComponent } from "vue"
+import type { PropType } from "vue"
 
 // Importa o modelo Product
 import { Product } from "../models/Product"
