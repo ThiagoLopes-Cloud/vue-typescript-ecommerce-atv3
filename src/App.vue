@@ -1,29 +1,30 @@
 <script lang="ts">
 
-// Importa função para criar componente
+// Importa função para criar componente no Vue
 import { defineComponent } from "vue"
 
-// Importa o componente de produto
+// Importa o componente de produto (filho)
 import ProductCard from "./components/ProductCard.vue"
 
-// Importa o model Product
+// Importa o modelo Product
 import { Product } from "./models/Product"
 
 // Define o componente principal
 export default defineComponent({
 
+  // Nome do componente
   name: "App",
 
-  // Registra o componente
+  // Registra os componentes usados no template
   components: {
     ProductCard
   },
 
-  // Estado da aplicação
+  // Estado reativo da aplicação
   data() {
     return {
 
-      // Lista de produtos
+      // Lista de produtos fictícios
       products: [
 
         new Product(1, "Notebook Gamer", 4500),
@@ -33,38 +34,59 @@ export default defineComponent({
 
       ],
 
-      // Carrinho (array tipado corretamente)
-      cartItems: [] as Product[]
+      // Carrinho com estrutura correta (produto + quantidade)
+      cartItems: [] as { product: Product; quantity: number }[]
 
     }
   },
 
-  // Métodos do componente
+  // Métodos da aplicação
   methods: {
 
-    // Adiciona produto ao carrinho
+    // Método chamado ao clicar em "Adicionar ao carrinho"
     addToCart(product: Product) {
 
-      // Adiciona direto no array
-      this.cartItems.push(product)
+      // Verifica se o produto já existe no carrinho
+      const existingItem = this.cartItems.find(
+        item => item.product.id === product.id
+      )
 
-      console.log("Produto adicionado:", product)
+      // Se já existe → aumenta quantidade
+      if (existingItem) {
+
+        existingItem.quantity++
+
+      } else {
+
+        // Se não existe → adiciona novo item
+        this.cartItems.push({
+          product: product,
+          quantity: 1
+        })
+
+      }
 
     }
 
   },
 
-  // Computed (boa prática para cálculos)
+  // Computed: valores calculados automaticamente
   computed: {
 
-    // Total de itens
+    // Total de itens no carrinho
     totalItems(): number {
-      return this.cartItems.length
+      return this.cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+      )
     },
 
-    // Soma total dos preços
+    // Preço total do carrinho
     totalPrice(): number {
-      return this.cartItems.reduce((total, item) => total + item.price, 0)
+      return this.cartItems.reduce(
+        (total, item) => total + (item.product.price * item.quantity),
+        0
+      )
     }
 
   }
@@ -78,6 +100,7 @@ export default defineComponent({
 
   <div>
 
+    <!-- Título -->
     <h1>Mini E-commerce</h1>
 
     <!-- Lista de produtos -->
@@ -94,6 +117,15 @@ export default defineComponent({
     <p>Total de itens: {{ totalItems }}</p>
 
     <p>Preço total: R$ {{ totalPrice }}</p>
+
+    <!-- Lista detalhada -->
+    <h3>Itens no carrinho:</h3>
+
+    <ul>
+      <li v-for="item in cartItems" :key="item.product.id">
+        {{ item.product.name }} - Quantidade: {{ item.quantity }}
+      </li>
+    </ul>
 
   </div>
 
