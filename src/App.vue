@@ -2,13 +2,15 @@
 
 import { defineComponent } from "vue"
 
-// Importa o componente
+// importa componente
 import ProductCard from "./components/ProductCard.vue"
 
-// Importa o model
+// importa model
 import { Product } from "./models/Product"
 
 export default defineComponent({
+
+  name: "App",
 
   components: {
     ProductCard
@@ -18,8 +20,28 @@ export default defineComponent({
 
     return {
 
-      // Produto fictício apenas para teste
-      product: new Product(1, "Notebook Gamer", 4500)
+      // lista de produtos fictícios
+      products: [
+
+        new Product(1, "Notebook Gamer", 4500),
+        new Product(2, "Mouse Gamer", 150),
+        new Product(3, "Teclado Mecânico", 350),
+        new Product(4, "Monitor 27 Polegadas", 1200)
+
+      ],
+
+      // lista do carrinho
+      cartItems: []
+
+    }
+
+  },
+
+  methods: {
+
+    addToCart(product: Product) {
+
+      console.log("Produto adicionado:", product)
 
     }
 
@@ -29,11 +51,21 @@ export default defineComponent({
 
 </script>
 
+
 <template>
 
-  <h1>Minha Loja</h1>
+  <div>
 
-  <!-- Renderiza o componente -->
-  <ProductCard :product="product" />
+    <h1>Mini E-commerce</h1>
+
+    <!-- lista de produtos -->
+    <Produtocard
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      @add-to-cart="addToCart"
+    />
+
+  </div>
 
 </template>
