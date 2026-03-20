@@ -1,48 +1,113 @@
-# .
+# 🛒 Mini E-commerce com Vue + TypeScript
 
-This template should help get you started developing with Vue 3 in Vite.
+Projeto desenvolvido como parte da trilha **FullStack TIC-HUB 12** do Instituto IREDE, com foco em aplicação prática de conceitos modernos de desenvolvimento frontend.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 📌 Sobre o Projeto
 
-## Recommended Browser Setup
+Este projeto simula um mini sistema de e-commerce, permitindo:
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Listagem de produtos
+- Adição ao carrinho
+- Controle de quantidade
+- Remoção de itens
+- Cálculo automático de total
 
-## Type Support for `.vue` Imports in TS
+Além da lógica de negócio, o projeto evolui para uma interface moderna utilizando bibliotecas profissionais do mercado.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## 🚀 Tecnologias Utilizadas
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Vue 3 (Options API)**
+- **TypeScript**
+- **Tailwind CSS**
+- **PrimeVue**
+- **Vite**
 
-## Project Setup
+---
 
-```sh
+## 🧠 Conceitos Aplicados
+
+- Programação Orientada a Objetos (POO)
+- Tipagem forte com TypeScript
+- Componentização com Vue
+- Comunicação entre componentes (Props & Emits)
+- Gerenciamento de estado local
+- High Order Functions (`reduce`, `find`, etc.)
+- UI moderna com Design System
+
+---
+
+## 🎨 Interface (UI)
+
+A interface foi construída utilizando:
+
+- **Tailwind CSS** → Responsividade e layout moderno
+- **PrimeVue** → Componentes prontos e profissionais (Card, Button)
+
+---
+
+## 🛠️ Funcionalidades
+
+✔ Listagem de produtos  
+✔ Adicionar ao carrinho  
+✔ Incrementar e decrementar quantidade  
+✔ Remover itens do carrinho  
+✔ Cálculo automático de total  
+✔ Layout responsivo  
+
+---
+
+## 📂 Estrutura do Projeto
+
+````
+src/
+│
+├── components/
+│ └── ProductCard.vue
+│
+├── models/
+│ └── Product.ts
+│
+├── App.vue
+├── main.ts
+````
+----
+## ▶️ Como rodar o projeto
+
+```
+bash
+# Instalar dependências
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Rodar o projeto
 npm run dev
-```
+````
+----
+🎯 Objetivo
 
-### Type-Check, Compile and Minify for Production
+Este projeto tem como objetivo consolidar conhecimentos em:
 
-```sh
-npm run build
-```
+Frontend moderno
 
-### Lint with [ESLint](https://eslint.org/)
+Arquitetura de componentes
 
-```sh
-npm run lint
-```
+Boas práticas de código
+
+Construção de interfaces profissionais
+
+----
+📚 Projeto Educacional
+
+Desenvolvido como parte da trilha:
+
+TIC-HUB 12 - FullStack
+Instituto IREDE
+
+🔗 https://lnk.bio/institutoirede
+
+📷 Instagram: @institutoired
+
+----
