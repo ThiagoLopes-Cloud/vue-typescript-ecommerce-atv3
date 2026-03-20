@@ -1,75 +1,56 @@
 <script lang="ts">
-
-// Importa função principal do Vue
 import { defineComponent } from "vue"
-
-// Importa apenas o tipo PropType
 import type { PropType } from "vue"
-
-// Importa o modelo Product
 import { Product } from "../models/Product"
 
-// Criação do componente
+// PrimeVue
+import Card from "primevue/card"
+import PvButton from "primevue/button"
+
 export default defineComponent({
 
-  // Nome do componente
   name: "ProductCard",
 
-  // Props recebidas do componente pai
-  props: {
-
-    // Produto que será exibido
-    product: {
-
-      // Define que o tipo da prop é Product
-      type: Object as PropType<Product>,
-
-      // Define que a prop é obrigatória
-      required: true
-
-    }
-
+  components: {
+    Card,
+    PvButton 
   },
 
-  // Eventos que o componente pode emitir
-  emits: ["add-to-cart"],
-
-  // Methods do componente
-  methods: {
-
-    // Método chamado ao clicar no botão
-    handleAddToCart() {
-
-      // Emite evento para o componente pai
-      this.$emit("add-to-cart", this.product)
-
+  props: {
+    product: {
+      type: Object as PropType<Product>,
+      required: true
     }
+  },
 
-  }
+  emits: ["add-to-cart"]
 
 })
-
 </script>
-
 
 <template>
 
-  <!-- Container do card do produto -->
-  <div class="product-card">
+  <Card class="shadow-lg rounded-2xl">
 
-    <!-- Nome do produto -->
-    <h3>{{ product.name }}</h3>
+    <template #title>
+      {{ product.name }}
+    </template>
 
-    <!-- Preço do produto -->
-    <p>Preço: R$ {{ product.price }}</p>
+    <template #content>
+      <p class="text-lg font-bold">
+        R$ {{ product.price }}
+      </p>
+    </template>
 
-    <!-- Botão que adiciona o produto ao carrinho -->
-    <button @click="handleAddToCart">
+    <template #footer>
+      <PvButton
+        label="Adicionar"
+        icon="pi pi-shopping-cart"
+        class="w-full"
+        @click="$emit('add-to-cart', product)"
+      />
+    </template>
 
-      Adicionar ao carrinho
-
-    </button>
-
-  </div>
+  </Card>
 
 </template>
